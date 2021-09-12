@@ -18,7 +18,7 @@ defmodule ElixirRegistryExample do
   def start(_type, _args) do
     children = [
       Registry.child_spec(
-        keys: :unique,
+        keys: :duplicate,
         name: Registry.ElixirRegistryExample
       ),
       Plug.Cowboy.child_spec(
