@@ -17,10 +17,6 @@ defmodule ElixirRegistryExample do
 
   def start(_type, _args) do
     children = [
-      Registry.child_spec(
-        keys: :duplicate,
-        name: Registry.ElixirRegistryExample
-      ),
       Plug.Cowboy.child_spec(
         scheme: :http,
         plug: ElixirRegistryExample.Router,
@@ -28,7 +24,15 @@ defmodule ElixirRegistryExample do
           dispatch: dispatch(),
           port: 4000
         ]
-      )
+      ),
+      Registry.child_spec(
+        keys: :duplicate,
+        name: Registry.ElixirRegistryExample
+      ),
+      %{
+        id: Stack,
+        start: {Stack, :start_link, [[:hello]]}
+      }
     ]
 
     opts = [strategy: :one_for_one, name: ElixirRegistryExample.Application]
