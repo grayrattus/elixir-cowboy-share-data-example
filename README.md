@@ -1,21 +1,23 @@
-# ElixirRegistryExample
+# Elixir cowboy api calls storage example
 
-**TODO: Add description**
+# WHY
 
-## Installation
+I was wondering how use some sharing resources between API calls in Elixir. I didn't want to use
+`phoenix` framework as I used it before, so I picked `cowboy` instead.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `elixir_registry_example` to your list of dependencies in `mix.exs`:
+# How data is shared
 
-```elixir
-def deps do
-  [
-    {:elixir_registry_example, "~> 0.1.0"}
-  ]
-end
+Data is shared in supervised `GenServer`.
+Most of the code is taken from documentation of (Elixir GenServer)[https://hexdocs.pm/elixir/1.12/GenServer.html#c:handle_call/3] but the part with `cowboy` is something I come up by discovering many examples available on github.
+
+# How to build and run
+```
+mix deps.get
+iex -S mix
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/elixir_registry_example](https://hexdocs.pm/elixir_registry_example).
+To query API you need to
+```
+curl localhost:4000/restHeaders
+```
 
